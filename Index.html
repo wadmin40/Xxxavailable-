@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>18+ Gallery</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #080808;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 25px 10px;
+    background: #151515;
+}
+
+header h1 {
+    font-size: 25px;
+    margin: 0;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 15px;
+}
+
+.card {
+    background: #1b1b1b;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+
+.card p {
+    padding: 10px;
+    margin: 0;
+}
+
+@media(max-width: 600px) {
+    .gallery {
+        grid-template-columns: 1fr;
+        padding: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>18+ Gallery</h1>
+    <p>Adults Only – 18+</p>
+</header>
+
+<div class="gallery">
+
+    <div class="card">
+        <img src="image1.jpg" alt="Gallery image 1">
+        <p>View Gallery</p>
+    </div>
+
+    <div class="card">
+        <img src="image2.jpg" alt="Gallery image 2">
+        <p>View Gallery</p>
+    </div>
+
+    <div class="card">
+        <img src="image3.jpg" alt="Gallery image 3">
+        <p>View Gallery</p>
+    </div>
+
+</div>
+
+</body>
+</html>
