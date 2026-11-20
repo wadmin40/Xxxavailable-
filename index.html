@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>18+ Gallery</title>
+
+<title>Social Gallery</title>
 
 <style>
 * {
@@ -18,48 +19,108 @@ body {
 }
 
 header {
-    text-align: center;
-    padding: 25px 10px;
-    background: #151515;
+    height: 55px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    border-bottom: 1px solid #333;
 }
 
-header h1 {
-    font-size: 25px;
-    margin: 0;
+.logo {
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    max-width: 1100px;
-    margin: 35px auto;
+.profile {
+    color: #aaa;
+    font-size: 13px;
+}
+
+.feed {
+    max-width: 650px;
+    margin: auto;
     padding: 15px;
 }
 
-.card {
-    background: #1b1b1b;
-    border-radius: 10px;
+.post {
+    background: #151515;
+    border-radius: 12px;
     overflow: hidden;
-    text-align: center;
+    margin-bottom: 25px;
 }
 
-.card img {
+.user {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    gap: 10px;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    background: #444;
+    border-radius: 50%;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.post img {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
     display: block;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    background: #222;
 }
 
-.card p {
-    padding: 10px;
-    margin: 0;
+.actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 5px;
 }
 
-@media(max-width: 600px) {
-    .gallery {
-        grid-template-columns: 1fr;
-        padding: 12px;
+button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+button.active {
+    color: #ff3158;
+}
+
+.caption {
+    padding: 0 15px 15px;
+    color: #ddd;
+    font-size: 14px;
+}
+
+.sponsor {
+    display: block;
+    background: #292929;
+    color: white;
+    padding: 13px;
+    text-align: center;
+    text-decoration: none;
+    margin: 12px;
+    border-radius: 7px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #777;
+}
+
+@media(min-width: 900px) {
+    .feed {
+        max-width: 600px;
     }
 }
 </style>
@@ -68,28 +129,126 @@ header h1 {
 <body>
 
 <header>
-    <h1>18+ Gallery</h1>
-    <p>Adults Only – 18+</p>
+    <div class="logo">Social Gallery</div>
+    <div class="profile">@official_gallery</div>
 </header>
 
-<div class="gallery">
+<main class="feed">
 
-    <div class="card">
-        <img src="image1.jpg" alt="Gallery image 1">
-        <p>View Gallery</p>
-    </div>
+    <!-- POST 1 -->
 
-    <div class="card">
-        <img src="image2.jpg" alt="Gallery image 2">
-        <p>View Gallery</p>
-    </div>
+    <article class="post">
 
-    <div class="card">
-        <img src="image3.jpg" alt="Gallery image 3">
-        <p>View Gallery</p>
-    </div>
+        <div class="user">
+            <div class="avatar"></div>
+            <div>
+                <div class="username">@gallery_user01</div>
+                <small>Public Profile</small>
+            </div>
+        </div>
 
-</div>
+        <img src="post1.jpg" alt="Gallery photo 1">
+
+        <div class="actions">
+            <button onclick="like(this)">♡ <span>0</span></button>
+            <button onclick="comment()">💬</button>
+            <button onclick="favorite(this)">☆</button>
+            <button onclick="share()">↗</button>
+        </div>
+
+        <div class="caption">
+            <b>@gallery_user01</b>
+            Welcome to my gallery.
+        </div>
+
+        <a class="sponsor" href="#" target="_blank"
+           rel="nofollow sponsored">
+           Open Sponsored Link
+        </a>
+
+    </article>
+
+
+    <!-- POST 2 -->
+
+    <article class="post">
+
+        <div class="user">
+            <div class="avatar"></div>
+            <div>
+                <div class="username">@gallery_user02</div>
+                <small>Public Profile</small>
+            </div>
+        </div>
+
+        <img src="post2.jpg" alt="Gallery photo 2">
+
+        <div class="actions">
+            <button onclick="like(this)">♡ <span>0</span></button>
+            <button onclick="comment()">💬</button>
+            <button onclick="favorite(this)">☆</button>
+            <button onclick="share()">↗</button>
+        </div>
+
+        <div class="caption">
+            <b>@gallery_user02</b>
+            Explore more photos.
+        </div>
+
+        <a class="sponsor" href="#" target="_blank"
+           rel="nofollow sponsored">
+           Open Sponsored Link
+        </a>
+
+    </article>
+
+</main>
+
+<footer>
+    © 2026 Social Gallery | 18+
+</footer>
+
+<script>
+
+function like(btn) {
+    let count = btn.querySelector("span");
+
+    if(btn.classList.contains("active")) {
+        count.textContent--;
+        btn.classList.remove("active");
+    } else {
+        count.textContent++;
+        btn.classList.add("active");
+    }
+}
+
+function favorite(btn) {
+    btn.classList.toggle("active");
+    btn.textContent =
+        btn.classList.contains("active") ? "★" : "☆";
+}
+
+function comment() {
+    let text = prompt("Write your comment:");
+
+    if(text) {
+        alert("Comment added for this session!");
+    }
+}
+
+function share() {
+    if(navigator.share) {
+        navigator.share({
+            title: "Social Gallery",
+            url: location.href
+        });
+    } else {
+        navigator.clipboard.writeText(location.href);
+        alert("Link copied!");
+    }
+}
+
+</script>
 
 </body>
 </html>
